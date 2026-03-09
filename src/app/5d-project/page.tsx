@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useState, useEffect } from "react";
+import { Suspense, useState, useEffect, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { experimental_useObject as useObject } from "@ai-sdk/react";
 import { z } from "zod";
@@ -232,6 +232,21 @@ function ProjectNamingContent() {
     const [competency, setCompetency] = useState("문제해결력");
     const [caseFilter, setCaseFilter] = useState("전체");
 
+    const mainSubject = subject ? subject.split(" - ")[0] : "";
+    const unitOptions = useMemo(() => {
+        if (!mainSubject) return UNIT_WORD_OPTIONS;
+
+        switch (mainSubject) {
+            case "국어": return ["문학 작품 속 인물 심리 분석", "매체에 나타난 가짜 뉴스 사례 분석", "고전 시가에 나타난 자연관 탐구", "언어 차이를 반영한 새말 탐구", "진로 관련 독서 토론"];
+            case "수학": return ["정적분과 급수의 합을 이용한 증명", "매체 속 통계 자료 비판적 해석", "전염병 확산 지수함수 그래프 모델링", "기하학적 원리를 활용한 모형 제작", "실생활 문제의 수학적 재구성"];
+            case "영어": return ["영자 신문 인터넷 기사 작성", "TED 강연 프리젠테이션 전략 분석", "글로벌 환경 문제 영어 에세이 작성", "관심 전공 관련 영어 논문 초록 요약", "원서 소설의 문화적 배경 조사"];
+            case "사회": return ["거주 지역의 에너지 정책 논술", "고용 관련 경제 지표 변동 분석", "사상가와 자신의 행복관 비교", "지역 간 불평등 해소 복지 정책 제안", "역사적 판결 사례와 법치주의 토론"];
+            case "과학": return ["자유 낙하 운동 실험 시뮬레이션 분석", "기후 변화 데이터 활용 생태계 예측 모델링", "가계도 분석을 통한 유전 형질 추론", "산화 환원 반응 친환경 손난로 설계", "지역 지질 명소 화석 지층 탐사"];
+            case "정보": return ["공공데이터 API 활용 앱 시제품 구현", "빅데이터 분석 및 시각화 프로그래밍", "머신러닝 적용 정형 데이터 분석", "암호화 원리 적용 보안 설계", "인공지능 윤리 가이드라인 한계 탐구"];
+            default: return UNIT_WORD_OPTIONS;
+        }
+    }, [mainSubject]);
+
     const { object, submit, isLoading, error } = useObject({
         api: "/api/project-naming",
         schema: namingSchema,
@@ -337,7 +352,7 @@ function ProjectNamingContent() {
                                         label="단원/예시단어"
                                         value={unit}
                                         onChange={setUnit}
-                                        options={UNIT_WORD_OPTIONS}
+                                        options={unitOptions}
                                         placeholder="예: 빅데이터 분석 및 시각화"
                                         required
                                     />
