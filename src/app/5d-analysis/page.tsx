@@ -97,21 +97,23 @@ export default function PrepAnalysisPage() {
             {/* Header */}
             <div className="max-w-6xl mx-auto px-6 pt-40">
                 <div className="text-center mb-16 space-y-6">
-                    <motion.h1
-                        initial={{ opacity: 0, y: -20 }}
+                    <motion.div
+                        initial={{ opacity: 0, y: -16 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-4xl sm:text-5xl font-black text-trust-navy tracking-tight flex items-center justify-center gap-4"
+                        className="flex justify-center"
                     >
-                        <div className="bg-trust-navy rounded-full p-3 flex items-center justify-center shadow-lg">
-                            <FileText className="w-10 h-10 text-white" />
+                        <div className="inline-flex items-center gap-3 mb-6 text-left">
+                            <div className="w-14 h-14 rounded-2xl bg-purple-600 flex items-center justify-center shadow-lg shadow-purple-200 shrink-0">
+                                <FileText className="w-7 h-7 text-white" />
+                            </div>
+                            <h1 className="text-3xl font-black text-slate-900 break-keep">5D-Say 학생부 분석</h1>
                         </div>
-                        <span><span className="text-purple-600">5D-Say</span> 학생부 분석</span>
-                    </motion.h1>
+                    </motion.div>
                     <motion.p
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
-                        className="text-xl text-slate-600 max-w-3xl mx-auto break-keep leading-relaxed"
+                        className="text-base text-slate-600 max-w-3xl mx-auto break-keep leading-relaxed"
                     >
                         <strong className="text-purple-600">학교생활기록부</strong>  또는 학생 활동이력 파일을 업로드하세요. <br className="hidden sm:block" />
                         AI가 <strong className="text-purple-600">5가지 핵심 역량(5D)</strong>을 정밀 분석하여,<br className="hidden sm:block" />

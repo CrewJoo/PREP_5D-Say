@@ -31,7 +31,7 @@ export function ProgramGuideModal({ isOpen, onClose }: ProgramGuideModalProps) {
                         initial={{ opacity: 0, scale: 0.95, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                        className="fixed inset-0 z-[10002] flex items-center justify-center p-4 sm:p-8 pointer-events-none"
+                        className="fixed inset-0 z-[10002] flex items-start justify-center pt-28 pb-4 px-4 sm:px-8 overflow-y-auto pointer-events-none"
                     >
                         <div className="bg-white rounded-3xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl pointer-events-auto relative">
                             {/* Header */}

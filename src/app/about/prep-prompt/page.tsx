@@ -62,7 +62,7 @@ export default function AboutAisperPage() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.2 }}
-                        className="text-xl text-slate-500 font-medium max-w-2xl mx-auto break-keep"
+                        className="text-base text-slate-500 font-medium max-w-2xl mx-auto break-keep"
                     >
                         AI의 잠재력을 100% 깨우는 데는 복잡한 코딩이 필요 없습니다.<br />
                         명확한 생각의 공식, <span className="text-trust-navy font-bold">PREP</span> 하나면 충분합니다.

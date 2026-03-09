@@ -5,7 +5,7 @@ interface ModeSelectionProps {
     onSelect: (mode: 'INTERVIEW' | 'WORK') => void;
     title?: string;
     subtitle?: string;
-    theme?: 'emerald' | 'indigo';
+    theme?: 'emerald' | 'indigo' | 'blue' | 'amber';
 }
 
 export function ModeSelection({ onSelect, title, subtitle, theme = 'emerald' }: ModeSelectionProps) {
@@ -27,8 +27,27 @@ export function ModeSelection({ onSelect, title, subtitle, theme = 'emerald' }: 
             iconBg2: "bg-violet-50 group-hover:bg-violet-100",
             iconBorder2: "border-violet-100 group-hover:border-violet-200",
             iconColor2: "text-violet-600",
-        }
+        },
+        blue: {
+            title: "text-trust-navy",
+            iconBg: "bg-blue-50 group-hover:bg-blue-100",
+            iconBorder: "border-blue-100 group-hover:border-blue-200",
+            iconColor: "text-blue-600",
+            iconBg2: "bg-indigo-50 group-hover:bg-indigo-100",
+            iconBorder2: "border-indigo-100 group-hover:border-indigo-200",
+            iconColor2: "text-indigo-600",
+        },
+        amber: {
+            title: "text-trust-navy",
+            iconBg: "bg-amber-50 group-hover:bg-amber-100",
+            iconBorder: "border-amber-100 group-hover:border-amber-200",
+            iconColor: "text-amber-600",
+            iconBg2: "bg-orange-50 group-hover:bg-orange-100",
+            iconBorder2: "border-orange-100 group-hover:border-orange-200",
+            iconColor2: "text-orange-600",
+        },
     };
+
 
     const c = colors[theme];
 

@@ -99,9 +99,9 @@ export default function GwasaeteukPage() {
 
     const titleDescription = (
         <>
-            정제되지 않은 <span className="text-violet-600 font-bold">과세특 문안</span>이나 학생의 <span className="text-violet-600 font-bold">활동 메모</span>를 입력받아, <br className="hidden sm:block" />
-            입학사정관이 주목하는 <span className="text-violet-600 font-bold">5D 관점</span>을 반영하여 <br />
-            설득력 높은 <span className="text-violet-600 font-bold">PREP 구조</span>로 빈틈없이 리팩토링해 드립니다.<br />
+            정제되지 않은 <span className="text-red-600 font-bold">과세특 문안</span>이나 학생의 <span className="text-red-600 font-bold">활동 메모</span>를 입력받아, <br className="hidden sm:block" />
+            입학사정관이 주목하는 <span className="text-red-600 font-bold">5D 관점</span>을 반영하여 <br />
+            설득력 높은 <span className="text-red-600 font-bold">PREP 구조</span>로 빈틈없이 리팩토링해 드립니다.<br />
         </>
     );
 
@@ -110,15 +110,17 @@ export default function GwasaeteukPage() {
             title=""
             description=""
             pageTitle={
-                <span className="flex items-center justify-center gap-4">
-                    <span className="bg-trust-navy rounded-full p-3 flex items-center justify-center shadow-lg">
-                        <ArrowRightLeft className="w-10 h-10 text-white" />
-                    </span>
-                    <span><span className="text-violet-600">5D-say</span> 과세특</span>
-                </span>
+                <>
+                    <div className="w-14 h-14 rounded-2xl bg-rose-500 flex items-center justify-center shadow-lg shadow-rose-200 shrink-0">
+                        <ArrowRightLeft className="w-7 h-7 text-white" />
+                    </div>
+                    <div className="text-left">
+                        <h1 className="text-3xl font-black text-slate-900 break-keep">5D-Say 과세특</h1>
+                    </div>
+                </>
             }
             pageDescription={titleDescription}
-            theme="purple"
+            theme="rose"
         >
             {/* Saved Toast */}
             {showSavedToast && (
@@ -168,19 +170,19 @@ export default function GwasaeteukPage() {
                             <div className="space-y-4">
                                 <div className="rounded-xl bg-red-50 p-5 shadow-sm border border-red-100">
                                     <span className="font-bold text-red-600 text-lg block mb-2">Point (입학사정관을 사로잡는 결론)</span>
-                                    <p className="text-xl text-gray-900 leading-relaxed">{parsedData.point1}</p>
+                                    <p className="text-base text-gray-900 leading-relaxed">{parsedData.point1}</p>
                                 </div>
                                 <div className="rounded-xl bg-blue-50 p-5 shadow-sm border border-blue-100">
                                     <span className="font-bold text-blue-600 text-lg block mb-2">Reason (전공 적합성 및 근거)</span>
-                                    <p className="text-xl text-gray-900 leading-relaxed">{parsedData.reason}</p>
+                                    <p className="text-base text-gray-900 leading-relaxed">{parsedData.reason}</p>
                                 </div>
                                 <div className="rounded-xl bg-emerald-50 p-5 shadow-sm border border-emerald-100">
                                     <span className="font-bold text-emerald-600 text-lg block mb-2">Example (구체적 탐구 사례 및 극복 과정)</span>
-                                    <p className="text-xl text-gray-900 leading-relaxed">{parsedData.example}</p>
+                                    <p className="text-base text-gray-900 leading-relaxed">{parsedData.example}</p>
                                 </div>
                                 <div className="rounded-xl bg-orange-50 p-5 shadow-sm border border-orange-100">
                                     <span className="font-bold text-orange-500 text-lg block mb-2">Point (성장된 역량 요약)</span>
-                                    <p className="text-xl text-gray-900 leading-relaxed">{parsedData.point2}</p>
+                                    <p className="text-base text-gray-900 leading-relaxed">{parsedData.point2}</p>
                                 </div>
                             </div>
                         </div>
@@ -285,19 +287,19 @@ export default function GwasaeteukPage() {
                                                     <div className="space-y-4 mt-2">
                                                         <div className="rounded-xl bg-red-50 p-5 shadow-sm border border-red-100">
                                                             <span className="font-bold text-red-600 text-lg block mb-2">Point (입학사정관을 사로잡는 결론)</span>
-                                                            <p className="text-xl text-gray-900 leading-relaxed">{parsedData.point1_v2}</p>
+                                                            <p className="text-base text-gray-900 leading-relaxed">{parsedData.point1_v2}</p>
                                                         </div>
                                                         <div className="rounded-xl bg-blue-50 p-5 shadow-sm border border-blue-100">
                                                             <span className="font-bold text-blue-600 text-lg block mb-2">Reason (전공 적합성 및 근거)</span>
-                                                            <p className="text-xl text-gray-900 leading-relaxed">{parsedData.reason_v2}</p>
+                                                            <p className="text-base text-gray-900 leading-relaxed">{parsedData.reason_v2}</p>
                                                         </div>
                                                         <div className="rounded-xl bg-emerald-50 p-5 shadow-sm border border-emerald-100">
                                                             <span className="font-bold text-emerald-600 text-lg block mb-2">Example (구체적 탐구 사례 및 극복 과정)</span>
-                                                            <p className="text-xl text-gray-900 leading-relaxed">{parsedData.example_v2}</p>
+                                                            <p className="text-base text-gray-900 leading-relaxed">{parsedData.example_v2}</p>
                                                         </div>
                                                         <div className="rounded-xl bg-orange-50 p-5 shadow-sm border border-orange-100">
                                                             <span className="font-bold text-orange-500 text-lg block mb-2">Point (성장된 역량 요약)</span>
-                                                            <p className="text-xl text-gray-900 leading-relaxed">{parsedData.point2_v2}</p>
+                                                            <p className="text-base text-gray-900 leading-relaxed">{parsedData.point2_v2}</p>
                                                         </div>
                                                     </div>
                                                 </motion.div>

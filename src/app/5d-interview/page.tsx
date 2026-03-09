@@ -43,17 +43,19 @@ export default function PrepInterviewPage() {
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
                         >
-                            <h1 className="text-4xl sm:text-5xl font-black text-trust-navy tracking-tight flex items-center justify-center gap-4">
-                                <div className="bg-trust-navy rounded-full p-3 flex items-center justify-center shadow-lg">
-                                    <MessageCircle className="w-10 h-10 text-white" />
+                            <div className="flex justify-center">
+                                <div className="inline-flex items-center gap-3 mb-6 text-left">
+                                    <div className="w-14 h-14 rounded-2xl bg-purple-600 flex items-center justify-center shadow-lg shadow-purple-200 shrink-0">
+                                        <MessageCircle className="w-7 h-7 text-white" />
+                                    </div>
+                                    <h1 className="text-3xl font-black text-slate-900 break-keep">5D-Say 모의면접</h1>
                                 </div>
-                                <span><span className="text-purple-600">5D-say</span> 모의면접</span>
-                            </h1>
+                            </div>
                             <motion.p
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.1 }}
-                                className="text-xl text-slate-600 mt-8 md:mt-10 max-w-4xl mx-auto break-keep leading-relaxed"
+                                className="text-base text-slate-600 mt-6 max-w-4xl mx-auto break-keep leading-relaxed"
                             >
                                 "<span className="text-purple-600 font-bold">스토리 발굴 및 코칭</span>(Discovery)"<br />
                                 <br />5D 주제(<span className="text-purple-600 font-bold">Dream, trenD, Difficulty, branD, Different</span>)에 대해 <br />AI 사정관과 핑퐁 대화를 하며, <br />미처 생각하지 못한 자신만의 강점 스토리를 끄집어내는 <br /><span className="text-purple-600 font-bold">대화형 스토리 발굴(Discovery) 코칭</span>입니다.<br className="hidden sm:block" />
@@ -123,21 +125,23 @@ export default function PrepInterviewPage() {
             <div className="max-w-6xl mx-auto px-6 pt-40">
                 {/* Header Area */}
                 <div className="text-center mb-12 space-y-4">
-                    <motion.h1
-                        initial={{ opacity: 0, y: -20 }}
+                    <motion.div
+                        initial={{ opacity: 0, y: -16 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-4xl sm:text-5xl font-black text-trust-navy tracking-tight flex items-center justify-center gap-4"
+                        className="flex justify-center"
                     >
-                        <div className="bg-trust-navy rounded-full p-3 flex items-center justify-center shadow-lg">
-                            <MessageCircle className="w-10 h-10 text-white" />
+                        <div className="inline-flex items-center gap-3 mb-6 text-left">
+                            <div className="w-14 h-14 rounded-2xl bg-purple-600 flex items-center justify-center shadow-lg shadow-purple-200 shrink-0">
+                                <MessageCircle className="w-7 h-7 text-white" />
+                            </div>
+                            <h1 className="text-3xl font-black text-slate-900 break-keep">5D-Say 모의면접</h1>
                         </div>
-                        <span><span className="text-purple-600">5D-say</span> 모의면접</span>
-                    </motion.h1>
+                    </motion.div>
                     <motion.p
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
-                        className="text-xl text-slate-600 max-w-3xl mx-auto break-keep leading-relaxed"
+                        className="text-base text-slate-600 max-w-3xl mx-auto break-keep leading-relaxed"
                     >
                         {isAnalyzing || analysisResult
                             ? "대화 내용을 바탕으로 답변 역량을 분석했습니다."

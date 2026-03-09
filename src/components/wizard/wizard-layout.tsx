@@ -11,10 +11,13 @@ interface WizardLayoutProps {
     description?: string;
     pageTitle?: string | ReactNode;
     pageDescription?: string | ReactNode;
-    theme?: 'emerald' | 'indigo' | 'purple';
+    tipTitle?: string;
+    tipContent?: ReactNode;
+    theme?: 'emerald' | 'indigo' | 'purple' | 'rose';
+    compact?: boolean;
 }
 
-export function WizardLayout({ children, title, description, pageTitle, pageDescription, theme = 'emerald' }: WizardLayoutProps) {
+export function WizardLayout({ children, title, description, pageTitle, pageDescription, tipTitle, tipContent, theme = 'emerald', compact = false }: WizardLayoutProps) {
     const { question, setQuestion, mode } = usePrepStore();
 
     // ... (useEffect remains same)
@@ -22,25 +25,26 @@ export function WizardLayout({ children, title, description, pageTitle, pageDesc
     const borderGradients = {
         emerald: "bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400",
         indigo: "bg-gradient-to-r from-violet-500 via-fuchsia-500 to-amber-500",
-        purple: "bg-gradient-to-r from-purple-400 via-violet-500 to-fuchsia-400"
+        purple: "bg-gradient-to-r from-purple-400 via-violet-500 to-fuchsia-400",
+        rose: "bg-gradient-to-r from-rose-400 via-pink-400 to-red-400"
     };
 
     return (
-        <div className="min-h-screen relative pb-20 p-6">
+        <div className={`relative pb-20 p-6 ${compact ? '' : 'min-h-screen'}`}>
             {/* <HomeButton /> */}
 
-            <div className="max-w-6xl mx-auto px-6 pt-40">
+            <div className={`max-w-6xl mx-auto px-6 ${compact ? 'pt-0' : 'pt-52'}`}>
                 {/* Page Header (Optional) - Global Page Title */}
                 {(pageTitle || pageDescription) && (
-                    <div className="text-center mb-16 space-y-6">
+                    <div className="text-center mb-10 space-y-4">
                         {pageTitle && (
-                            <motion.h1
-                                initial={{ opacity: 0, y: -20 }}
+                            <motion.div
+                                initial={{ opacity: 0, y: -16 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight drop-shadow-sm"
+                                className="inline-flex items-center gap-3"
                             >
                                 {pageTitle}
-                            </motion.h1>
+                            </motion.div>
                         )}
                         {/* ... (description remains same) */}
                         {pageDescription && (
@@ -48,9 +52,40 @@ export function WizardLayout({ children, title, description, pageTitle, pageDesc
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.1 }}
-                                className="text-xl text-slate-600 mt-8 md:mt-10 max-w-3xl mx-auto break-keep leading-relaxed bg-white p-6 rounded-2xl border border-slate-200 shadow-xl"
+                                className="text-slate-500 text-base max-w-xl mx-auto leading-relaxed"
                             >
                                 {pageDescription}
+                            </motion.div>
+                        )}
+                        {/* Step Title & Description - tip 위 */}
+                        {(title || description) && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.12 }}
+                                className="max-w-3xl mx-auto text-center"
+                            >
+                                <h2 className="text-2xl font-bold text-slate-800 mb-1">{title}</h2>
+                                {description && (
+                                    <p className="text-base text-slate-500">{description}</p>
+                                )}
+                            </motion.div>
+                        )}
+                        {(tipTitle || tipContent) && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.15 }}
+                                className="max-w-3xl mx-auto rounded-xl bg-blue-50 border border-blue-100 p-5 text-left"
+                            >
+                                {tipTitle && (
+                                    <p className="text-base font-bold flex items-center gap-2 mb-2 text-blue-700">
+                                        💡 Tip: {tipTitle}
+                                    </p>
+                                )}
+                                <div className="text-sm leading-relaxed text-blue-900">
+                                    {tipContent}
+                                </div>
                             </motion.div>
                         )}
                     </div>
@@ -70,11 +105,11 @@ export function WizardLayout({ children, title, description, pageTitle, pageDesc
                             className="mb-8 text-left w-full pl-2"
                         >
                             <div className="flex items-start gap-4">
-                                <span className={`text-4xl font-handwriting font-bold -mt-2 drop-shadow-sm ${theme === 'indigo' ? 'text-indigo-500' : theme === 'purple' ? 'text-purple-500' : 'text-emerald-500'}`}>Q.</span>
-                                <h3 className={`text-2xl font-bold leading-tight drop-shadow-sm ${theme === 'indigo' ? 'text-indigo-600' : theme === 'purple' ? 'text-purple-600' : 'text-emerald-600'}`}>
+                                <span className={`text-4xl font-handwriting font-bold -mt-2 drop-shadow-sm ${theme === 'indigo' ? 'text-indigo-500' : theme === 'purple' ? 'text-purple-500' : theme === 'rose' ? 'text-rose-500' : 'text-emerald-500'}`}>Q.</span>
+                                <h3 className={`text-2xl font-bold leading-tight drop-shadow-sm ${theme === 'indigo' ? 'text-indigo-600' : theme === 'purple' ? 'text-purple-600' : theme === 'rose' ? 'text-rose-600' : 'text-emerald-600'}`}>
                                     {question.q}
                                 </h3>
-                                <div className={`flex-1 h-px mt-4 ml-4 self-center ${theme === 'indigo' ? 'bg-indigo-200' : theme === 'purple' ? 'bg-purple-200' : 'bg-emerald-200'}`} />
+                                <div className={`flex-1 h-px mt-4 ml-4 self-center ${theme === 'indigo' ? 'bg-indigo-200' : theme === 'purple' ? 'bg-purple-200' : theme === 'rose' ? 'bg-rose-200' : 'bg-emerald-200'}`} />
                             </div>
                         </motion.div>
                     )}
@@ -96,12 +131,7 @@ export function WizardLayout({ children, title, description, pageTitle, pageDesc
                         </AnimatePresence>
                     </div>
 
-                    <div className="mt-8 mb-4">
-                        <h2 className="mb-2 text-3xl font-bold text-white drop-shadow-lg">{title}</h2>
-                        {description && (
-                            <p className="text-xl text-slate-400 font-medium">{description}</p>
-                        )}
-                    </div>
+
                 </motion.div>
             </div>
         </div>

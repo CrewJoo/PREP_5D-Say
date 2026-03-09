@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 const ProgramGuideModal = dynamic(() => import("@/components/common/program-guide-modal").then(mod => mod.ProgramGuideModal), { ssr: false });
 import { motion } from "framer-motion";
@@ -14,6 +14,11 @@ import { useHomeStore } from "@/store/use-home-store";
 export default function Home() {
   const { viewMode, setViewMode } = useHomeStore();
   const [showGuide, setShowGuide] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const renderTitle = (text: string) => {
     return text.split("*").map((part, index) => (
@@ -34,10 +39,22 @@ export default function Home() {
     visible: { opacity: 1, y: 0 },
   };
 
+  // Initial Mount check to avoid hydration mismatch
+  if (!isMounted) {
+    return (
+      <div className="relative flex min-h-screen flex-col items-center justify-start bg-white text-gray-900">
+        <div className="absolute inset-0 z-0">
+          <Image src="/images/hero-owl.png" alt="Hero Background" fill className="object-cover object-left" priority />
+          <div className="absolute inset-0 bg-white/30 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.2)_0%,rgba(255,255,255,0.75)_60%,rgba(255,255,255,0.95)_100%)]" />
+        </div>
+      </div>
+    );
+  }
+
   // Intro Section
   if (viewMode === 'intro') {
     return (
-      <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-white text-gray-900">
+      <div className="relative flex min-h-screen flex-col items-center justify-start bg-white text-gray-900">
 
         {/* --- BACKGROUND SECTION --- */}
         <div className="absolute inset-0 z-0">
@@ -56,15 +73,15 @@ export default function Home() {
         {/* <MainNav /> is now in layout.tsx */}
 
         {/* --- MAIN HERO CONTENT --- */}
-        <div className="z-10 flex flex-col items-center gap-24 text-center p-4">
+        <div className="z-10 flex flex-col items-center gap-24 text-center px-4 pt-[400px] pb-24">
           <motion.div
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-center font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-trust-navy to-slate-500 mb-4 drop-shadow-sm leading-tight">
-              <span className="block text-3xl sm:text-5xl mb-2 sm:mb-4">"합격자는 이미 PREP을 쓰고 있습니다."</span>
+              <span className="hidden block text-3xl sm:text-5xl mb-2 sm:mb-4">"합격자는 이미 PREP을 쓰고 있습니다."</span>
               <br />
-              <span className="block text-2xl sm:text-4xl text-amber-600 mb-2 sm:mb-4">AI시대, 한·수·위 전략</span>
+              <span className="block text-3xl sm:text-5xl text-amber-600 mb-2 sm:mb-4">AI시대, 한·수·위 전략</span>
               <span className="block text-2xl sm:text-4xl mb-2 sm:mb-4">생각의 공식:: <span className="text-green-600">PREP<span className="text-lg sm:text-2xl font-light">(프렙)</span></span></span>
               <span className="block text-2xl sm:text-4xl mb-2 sm:mb-4">브랜딩 콘텐츠:: <span className="text-purple-600">5D-Say<span className="text-lg sm:text-2xl font-light">(오디세이)</span></span></span>
             </h1>
@@ -79,11 +96,195 @@ export default function Home() {
             */}
           </motion.div>
 
+          {/* 서비스 선택 카드 */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15 }}
+            className="hidden w-full mb-10"
+          >
+            <p className="hidden text-xs font-bold text-slate-400 tracking-widest uppercase mb-3 text-center">선생님들의 선택</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* 수행평가 작명소 */}
+              <Link
+                href="/5d-project"
+                className="group flex flex-col gap-3 text-left w-full p-5 bg-white border-2 border-slate-100 hover:border-red-300 hover:bg-red-50/50 rounded-2xl shadow-sm hover:shadow-lg transition-all cursor-pointer"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold px-3 py-1 rounded-full bg-red-100 text-red-700">HOT</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-red-100 text-red-600 flex-shrink-0">
+                    <span className="text-lg">💡</span>
+                  </div>
+                  <div>
+                    <p className="font-bold text-slate-800 text-lg">수행평가 영역명 작명소</p>
+                    <p className="text-xs text-slate-400 mt-0.5">입사관을 사로잡는 네이밍</p>
+                  </div>
+                </div>
+                <p className="text-sm text-slate-500 leading-relaxed">수행평가 조건(과목/단원)만 입력하면, <br /> AI가 창의적인 수행평가 영역명을 추천해 드립니다.</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {["우수 사례", "맞춤형 작명", "AI 추천"].map(t => (
+                    <span key={t} className="text-xs px-2 py-0.5 rounded-md border bg-red-50 text-red-600 border-red-100">{t}</span>
+                  ))}
+                </div>
+                <div className="mt-1 w-full py-2 rounded-xl text-white text-sm font-bold text-center bg-red-500 group-hover:bg-red-600 transition-colors">
+                  작명소 바로가기 →
+                </div>
+              </Link>
+              {/* 과세특 입력 */}
+              <Link
+                href="/5d-gwasaeteuk"
+                className="group flex flex-col gap-3 text-left w-full p-5 bg-white border-2 border-slate-100 hover:border-blue-300 hover:bg-blue-50/50 rounded-2xl shadow-sm hover:shadow-lg transition-all cursor-pointer"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold px-3 py-1 rounded-full bg-blue-100 text-blue-700">ESSENTIAL</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-blue-100 text-blue-600 flex-shrink-0">
+                    <span className="text-lg">✍️</span>
+                  </div>
+                  <div>
+                    <p className="font-bold text-slate-800 text-lg">과세특 작성</p>
+                    <p className="text-xs text-slate-400 mt-0.5">오디세이 스토리텔링 과세특</p>
+                  </div>
+                </div>
+                <p className="text-sm text-slate-500 leading-relaxed">자신의 스토리(5D)를 입력하면,<br />AI가 오디세이 맞춤형 과세특을 작성해 줍니다.</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {["스토리텔링", "맞춤형", "자동완성"].map(t => (
+                    <span key={t} className="text-xs px-2 py-0.5 rounded-md border bg-blue-50 text-blue-600 border-blue-100">{t}</span>
+                  ))}
+                </div>
+                <div className="mt-1 w-full py-2 rounded-xl text-white text-sm font-bold text-center bg-blue-500 group-hover:bg-blue-600 transition-colors">
+                  작성해보기 →
+                </div>
+              </Link>
+            </div>
+
+            <p className="hidden text-xs font-bold text-slate-400 tracking-widest uppercase mb-3 text-center mt-8">프렙 사고훈련</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* PREP 트레이닝 */}
+              <Link
+                href="/prep-training"
+                className="group flex flex-col gap-3 text-left w-full p-5 bg-white border-2 border-slate-100 hover:border-amber-300 hover:bg-amber-50/50 rounded-2xl shadow-sm hover:shadow-lg transition-all cursor-pointer"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold px-3 py-1 rounded-full bg-amber-100 text-amber-700">TRAINING</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-amber-100 text-amber-600 flex-shrink-0">
+                    <span className="text-lg">💪</span>
+                  </div>
+                  <div>
+                    <p className="font-bold text-slate-800 text-lg">PREP 트레이닝</p>
+                    <p className="text-xs text-slate-400 mt-0.5">논리적 말하기 구조화 훈련</p>
+                  </div>
+                </div>
+                <p className="text-sm text-slate-500 leading-relaxed">3단계 논리 구조(결론-이유-사례)로<br />어떤 질문에도 당황하지 않고 답변하는 훈련</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {["기초 훈련", "논리력", "구조화"].map(t => (
+                    <span key={t} className="text-xs px-2 py-0.5 rounded-md border bg-amber-50 text-amber-600 border-amber-100">{t}</span>
+                  ))}
+                </div>
+                <div className="mt-1 w-full py-2 rounded-xl text-white text-sm font-bold text-center bg-amber-500 group-hover:bg-amber-600 transition-colors">
+                  훈련 시작하기 →
+                </div>
+              </Link>
+
+              {/* 5D-Say 산파술 */}
+              <Link
+                href="/5d-elenchus"
+                className="group flex flex-col gap-3 text-left w-full p-5 bg-white border-2 border-slate-100 hover:border-violet-300 hover:bg-violet-50/50 rounded-2xl shadow-sm hover:shadow-lg transition-all cursor-pointer"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold px-3 py-1 rounded-full bg-violet-100 text-violet-700">DISCOVERY</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-violet-100 text-violet-600 flex-shrink-0">
+                    <span className="text-lg">🏛️</span>
+                  </div>
+                  <div>
+                    <p className="font-bold text-slate-800 text-lg">5D-Say 산파술</p>
+                    <p className="text-xs text-slate-400 mt-0.5">나만의 핵심 역량 발견</p>
+                  </div>
+                </div>
+                <p className="text-sm text-slate-500 leading-relaxed">나의 핵심역량(5D)을 파악하고,<br />입학사정관을 설득하는 차별화된 무기 만들기</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {["소크라테스 문답법", "메타인지", "심층 분석"].map(t => (
+                    <span key={t} className="text-xs px-2 py-0.5 rounded-md border bg-violet-50 text-violet-600 border-violet-100">{t}</span>
+                  ))}
+                </div>
+                <div className="mt-1 w-full py-2 rounded-xl text-white text-sm font-bold text-center bg-violet-500 group-hover:bg-violet-600 transition-colors">
+                  문답 시작하기 →
+                </div>
+              </Link>
+            </div>
+
+            <p className="hidden text-xs font-bold text-slate-400 tracking-widest uppercase mb-3 text-center mt-8">오디세이 면접 (PREP AI)</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* 5D-Say 오디세이 */}
+              <Link
+                href="/5d-odyssey"
+                className="group flex flex-col gap-3 text-left w-full p-5 bg-white border-2 border-slate-100 hover:border-purple-300 hover:bg-purple-50/50 rounded-2xl shadow-sm hover:shadow-lg transition-all cursor-pointer"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-700">STORY</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-purple-100 text-purple-600 flex-shrink-0">
+                    <span className="text-lg">🧭</span>
+                  </div>
+                  <div>
+                    <p className="font-bold text-slate-800 text-lg">5D-Say 오디세이</p>
+                    <p className="text-xs text-slate-400 mt-0.5">나만의 서사 모델 구축</p>
+                  </div>
+                </div>
+                <p className="text-sm text-slate-500 leading-relaxed">5D-Say(오디세이) 질문 5가지로<br />어떤 질문에도 흔들리지 않는 나만의 서사 완성</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {["5대 핵심질문", "스토리텔링", "면접 대비"].map(t => (
+                    <span key={t} className="text-xs px-2 py-0.5 rounded-md border bg-purple-50 text-purple-600 border-purple-100">{t}</span>
+                  ))}
+                </div>
+                <div className="mt-1 w-full py-2 rounded-xl text-white text-sm font-bold text-center bg-purple-500 group-hover:bg-purple-600 transition-colors">
+                  서사 구축하기 →
+                </div>
+              </Link>
+
+              {/* AI 면접 최종분석 */}
+              <Link
+                href="/danbi-interview"
+                className="group flex flex-col gap-3 text-left w-full p-5 bg-white border-2 border-slate-100 hover:border-blue-300 hover:bg-blue-50/50 rounded-2xl shadow-sm hover:shadow-lg transition-all cursor-pointer"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold px-3 py-1 rounded-full bg-blue-100 text-blue-700">PRACTICE</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-blue-100 text-blue-600 flex-shrink-0">
+                    <span className="text-lg">🎤</span>
+                  </div>
+                  <div>
+                    <p className="font-bold text-slate-800 text-lg">AI 면접 최종분석</p>
+                    <p className="text-xs text-slate-400 mt-0.5">실전 스크립트 모의면접 평가</p>
+                  </div>
+                </div>
+                <p className="text-sm text-slate-500 leading-relaxed">작성된 답변 스크립트를 분석하여<br />PREP 구조의 논리성과 입학사정관의 평가 기준 부합 여부 검증</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {["스크립트 검증", "논리성 평가", "피드백"].map(t => (
+                    <span key={t} className="text-xs px-2 py-0.5 rounded-md border bg-blue-50 text-blue-600 border-blue-100">{t}</span>
+                  ))}
+                </div>
+                <div className="mt-1 w-full py-2 rounded-xl text-white text-sm font-bold text-center bg-blue-500 group-hover:bg-blue-600 transition-colors">
+                  분석 시작하기 →
+                </div>
+              </Link>
+            </div>
+          </motion.div>
+
           {/* --- 상황 선택 리스트 (온보딩 진입 경로) --- */}
           <motion.div
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="w-full max-w-xl mt-10"
+            className="hidden w-full max-w-xl mt-4"
           >
             <p className="text-md font-semibold text-amber-600 tracking-[0.25em] uppercase mb-4 text-center">지금 내 상황은?</p>
 
@@ -175,7 +376,6 @@ export default function Home() {
                   <span className="font-bold text-sm">AI 최종분석으로 면접 통과 <span className="opacity-50 text-xs ml-1">(Validation)</span></span>
                 </div>
               </div>
-
             </div>
           </motion.div>
         </div>

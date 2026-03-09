@@ -16,42 +16,40 @@ export default function ElenchusPage() {
         reset();
     }, [reset]);
 
-    // Selection Mode
+    // Selection Mode - 산파술 선택 화면 + 하단에 모의면접 통합
     if (currentStep === 0) {
         return (
             <div className="min-h-screen bg-slate-50 relative pb-20 p-6">
                 <div className="max-w-6xl mx-auto px-6 pt-40">
-                    {/* Header */}
-                    <div className="text-center mb-16 space-y-6">
-                        <motion.h1
-                            initial={{ opacity: 0, y: -20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className="text-4xl sm:text-5xl font-black text-trust-navy tracking-tight flex items-center justify-center gap-4"
-                        >
-                            <div className="bg-trust-navy rounded-full p-3 flex items-center justify-center shadow-lg">
-                                <Landmark className="w-10 h-10 text-white" />
+                    {/* ── B코스 헤더 (A코스와 동일한 스타일) ── */}
+                    <motion.div
+                        initial={{ opacity: 0, y: -16 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-center mb-10"
+                    >
+                        <span className="inline-block py-1 px-3 rounded-full bg-violet-50 text-violet-600 text-sm font-bold mb-3 border border-violet-100">
+                            🏛️ B코스 · ELENCHUS
+                        </span>
+                        <div className="flex justify-center mb-2">
+                            <div className="inline-flex items-center gap-3 text-left">
+                                <div className="w-14 h-14 rounded-2xl bg-violet-600 flex items-center justify-center shadow-lg shadow-violet-200 shrink-0">
+                                    <Landmark className="w-7 h-7 text-white" />
+                                </div>
+                                <h1 className="text-3xl font-black text-slate-900 break-keep">자기발견 5D 문답법</h1>
                             </div>
-                            <span><span className="text-purple-600">5D-Say</span> 산파술</span>
-                        </motion.h1>
-                        <motion.p
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.1 }}
-                            className="text-xl text-slate-600 max-w-3xl mx-auto break-keep leading-relaxed"
-                        >
-                            "<span className="font-bold text-purple-600">너 자신을 알라.</span>"<br className="hidden sm:block" />
-                            <br /><span className="font-bold text-purple-600">AI 소크라테스</span>와의 끝장 토론(Elenchus)을 통해<br className="hidden sm:block" />
-                            당신조차 몰랐던 당신의 <span className="font-bold text-purple-600">핵심 역량(5D)</span>을 발견하세요.
-                        </motion.p>
-                    </div>
+                        </div>
+                        <p className="text-slate-500 text-sm">AI 소크라테스와 함께 나만의 핵심 역량(5D)을 발견하세요</p>
+                    </motion.div>
+
 
                     <ElenchusSelection />
+
                 </div>
             </div>
         );
     }
 
-    // Wizard Mode
+    // Wizard Mode (산파술 단계별)
     const getStepContent = () => {
         switch (currentStep) {
             case 1:
@@ -96,12 +94,14 @@ export default function ElenchusPage() {
             title={content.title}
             description={content.description}
             pageTitle={
-                <div className="flex items-center justify-center gap-4">
-                    <div className="bg-trust-navy rounded-full p-3 flex items-center justify-center shadow-lg">
-                        <Landmark className="w-8 h-8 text-white" />
+                <>
+                    <div className="w-14 h-14 rounded-2xl bg-purple-600 flex items-center justify-center shadow-lg shadow-purple-200 shrink-0">
+                        <Landmark className="w-7 h-7 text-white" />
                     </div>
-                    <span><span className="text-purple-600">5D-Say</span> 산파술</span>
-                </div>
+                    <div className="text-left">
+                        <h1 className="text-3xl font-black text-slate-900 break-keep">자기발견 5D 문답법</h1>
+                    </div>
+                </>
             }
             pageDescription={<>
                 소크라테스와의 문답법을 통해<br className="hidden sm:block" />
@@ -112,3 +112,4 @@ export default function ElenchusPage() {
         </WizardLayout>
     );
 }
+

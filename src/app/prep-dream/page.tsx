@@ -67,8 +67,12 @@ export default function PrepDreamPage() {
             description={stepInfo.description}
             pageTitle={
                 <>
-                    <span className="text-purple-500">PREP</span>실전{" "}
-                    <span className="text-slate-500 font-medium text-3xl sm:text-4xl">(Dream)</span>
+                    <div className="w-14 h-14 rounded-2xl bg-purple-500 flex items-center justify-center shadow-lg shadow-purple-200 shrink-0">
+                        <span className="text-2xl font-black text-white">5D</span>
+                    </div>
+                    <div className="text-left">
+                        <h1 className="text-3xl font-black text-slate-900 break-keep">자기발견 5D 문답법</h1>
+                    </div>
                 </>
             }
             pageDescription={

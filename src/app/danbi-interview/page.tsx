@@ -204,15 +204,16 @@ export default function InvestmentGamePage() {
         <div className="min-h-screen bg-[#F8FAFC] text-slate-900 pb-20 px-4 sm:px-8 font-sans selection:bg-indigo-100 selection:text-indigo-700 relative z-0">
             {/* Main Header */}
             <div className="max-w-6xl mx-auto mb-16 text-center pt-52">
-                <h1 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight flex flex-col sm:flex-row items-center justify-center gap-4 mb-6 relative">
-                    <div className="bg-trust-navy rounded-full p-3 flex items-center justify-center shadow-lg relative z-10 transform hover:scale-110 transition-transform duration-300">
-                        <Trophy className="w-10 h-10 text-white" />
+                <div className="flex justify-center relative">
+                    <div className="inline-flex items-center gap-3 mb-6 text-left relative z-10">
+                        <div className="w-14 h-14 rounded-2xl bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-200 shrink-0 transform hover:scale-110 transition-transform duration-300">
+                            <Trophy className="w-7 h-7 text-white" />
+                        </div>
+                        <h1 className="text-3xl font-black text-slate-900 break-keep">PREP AI 최종분석</h1>
                     </div>
-                    <span className="relative z-10 drop-shadow-sm"><span className="text-blue-600">PREP</span> <span className="text-slate-900">AI 최종분석</span></span>
-
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-indigo-200/20 blur-[100px] rounded-full pointer-events-none -z-0" />
-                </h1>
-                <p className="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed font-medium">
+                </div>
+                <p className="text-base text-slate-600 max-w-2xl mx-auto leading-relaxed font-medium">
                     "<span className="text-blue-600 font-bold">스크립트 검증 및 완성</span>(Validation)"<br />
                     <br />작성된 답변 스크립트 뭉치를 넣으면, <br /><span className="text-blue-600 font-bold">깐깐한 체크리스트</span>를 통해<br />
                     면접장용 <span className="text-blue-600 font-bold">최종 PREP 답변</span>으로 가공하고 합격(HIRED)을 판정합니다.

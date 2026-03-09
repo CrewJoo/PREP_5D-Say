@@ -34,23 +34,13 @@ export function StepReason() {
                     </span>
                 )}
 
-                <div className="rounded-xl bg-emerald-50 p-6 text-emerald-900 border border-emerald-100 mt-4">
-                    <p className="text-lg font-bold flex items-center gap-2 mb-2">
-                        💡 Tip: 주관적 감정보다는 &lsquo;객관적 사실&rsquo;을.
-                    </p>
-                    <p className="text-base leading-relaxed opacity-90">
-                        왜 그렇게 생각하시나요?{" "}
-                        <strong>상대방이 납득할 수 있는 구체적인 근거</strong>를 제시해 주세요.
-                        <br />
-                        수치, 데이터, 사실 기반의 이유일수록 설득력이 높아집니다.
-                    </p>
-                </div>
+
             </div>
             <div className="flex gap-2">
                 <Button variant="outline" onClick={() => setStep(1)} className="w-1/3">
                     이전
                 </Button>
-                <Button type="submit" className="w-2/3 bg-trust-navy text-white hover:bg-trust-navy/90 py-4 text-lg font-bold rounded-xl">
+                <Button type="submit" className="w-2/3 bg-blue-600 text-white hover:bg-blue-700 py-4 text-lg font-bold rounded-xl">
                     다음 (경험 증명하기)
                 </Button>
             </div>

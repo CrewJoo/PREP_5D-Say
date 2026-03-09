@@ -34,23 +34,14 @@ export function StepExample() {
                     </span>
                 )}
 
-                <div className="rounded-xl bg-emerald-50 p-6 text-emerald-900 border border-emerald-100 mt-4">
-                    <p className="text-lg font-bold flex items-center gap-2 mb-3">
-                        💡 주장을 가장 설득력 있게 뒷받침하는 증거를 선택하세요
-                    </p>
-                    <ul className="space-y-2 text-base opacity-90">
-                        <li><span className="font-bold">📊 데이터/통계:</span> 수치와 출처로 객관성을 확보하세요.</li>
-                        <li><span className="font-bold">🏢 객관적 사례:</span> 전공·학계의 구체적 사례로 논리를 증명하세요.</li>
-                        <li><span className="font-bold">💬 전문가 의견:</span> 권위 있는 연구·인용으로 신뢰도를 높이세요.</li>
-                        <li><span className="font-bold">🙋 개인 경험:</span> 본인의 구체적인 교내외 활동으로 진정성을 더하세요.</li>
-                    </ul>
-                </div>
+
+
             </div>
             <div className="flex gap-2">
                 <Button variant="outline" onClick={() => setStep(2)} className="w-1/3">
                     이전
                 </Button>
-                <Button type="submit" className="w-2/3 bg-trust-navy text-white hover:bg-trust-navy/90 py-4 text-lg font-bold rounded-xl">
+                <Button type="submit" className="w-2/3 bg-blue-600 text-white hover:bg-blue-700 py-4 text-lg font-bold rounded-xl">
                     다음 (마무리 짓기)
                 </Button>
             </div>

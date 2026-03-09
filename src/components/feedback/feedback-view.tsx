@@ -94,7 +94,7 @@ export function FeedbackView() {
                 <div className="flex justify-center py-8">
                     <Button
                         onClick={handleAnalyze}
-                        className="h-16 px-8 text-xl font-bold bg-trust-navy hover:bg-trust-navy/90 rounded-full shadow-xl hover:scale-105 transition-transform"
+                        className="h-16 px-8 text-xl font-bold bg-blue-600 hover:bg-blue-700 rounded-full shadow-xl hover:scale-105 transition-transform text-white"
                     >
                         <PlayCircle className="mr-2 h-6 w-6" />
                         AI 사정관의 피드백 받기
@@ -146,7 +146,7 @@ export function FeedbackView() {
                                 variant={showCoaching ? "secondary" : "outline"}
                                 size="lg"
                                 onClick={() => setShowCoaching(!showCoaching)}
-                                className={`w-full justify-between h-14 text-lg border transition-all ${showCoaching ? 'bg-trust-navy border-trust-navy text-white hover:bg-trust-navy/90' : 'bg-white border-gray-200 text-gray-600 hover:bg-gray-50'}`}
+                                className={`w-full justify-between h-14 text-lg border transition-all ${showCoaching ? 'bg-blue-700 border-blue-700 text-white hover:bg-blue-800' : 'bg-white border-gray-200 text-gray-600 hover:bg-gray-50'}`}
                             >
                                 <span className="flex items-center font-bold">
                                     <GraduationCap className={`mr-2 h-5 w-5 ${showCoaching ? 'text-blue-200' : 'text-gray-500'}`} />
@@ -213,13 +213,13 @@ export function FeedbackView() {
                                 variant={showScript ? "secondary" : "outline"}
                                 size="lg"
                                 onClick={() => setShowScript(!showScript)}
-                                className={`w-full justify-between h-14 text-lg border transition-all ${showScript ? 'bg-success-green border-success-green text-white hover:bg-green-600' : 'bg-white border-gray-200 text-gray-600 hover:bg-gray-50'}`}
+                                className={`w-full justify-between h-14 text-lg border transition-all ${showScript ? 'bg-blue-600 border-blue-600 text-white hover:bg-blue-700' : 'bg-white border-gray-200 text-gray-600 hover:bg-gray-50'}`}
                             >
                                 <span className="flex items-center font-bold">
-                                    <Volume2 className={`mr-2 h-5 w-5 ${showScript ? 'text-green-100' : 'text-gray-500'}`} />
+                                    <Volume2 className={`mr-2 h-5 w-5 ${showScript ? 'text-blue-100' : 'text-gray-500'}`} />
                                     합격 스크립트
                                 </span>
-                                <span className={`text-sm ${showScript ? 'text-green-100' : 'text-gray-400'}`}>{showScript ? '접기' : '펼치기'}</span>
+                                <span className={`text-sm ${showScript ? 'text-blue-100' : 'text-gray-400'}`}>{showScript ? '접기' : '펼치기'}</span>
                             </Button>
 
                             {showScript && object?.improved_prep && (
@@ -253,11 +253,8 @@ export function FeedbackView() {
 
                 <Button
                     size="lg"
-                    className="bg-emerald-600 text-white hover:bg-emerald-700 shadow-lg text-lg"
-                    onClick={() => {
-                        window.scrollTo({ top: 0, behavior: "smooth" });
-                        reset();
-                    }}
+                    className="bg-blue-600 text-white hover:bg-blue-700 shadow-lg text-lg"
+                    onClick={() => reset()}
                 >
                     <RotateCcw className="mr-2 h-5 w-5" />
                     새로운 주제 연습하기

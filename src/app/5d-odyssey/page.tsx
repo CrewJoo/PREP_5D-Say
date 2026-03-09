@@ -17,21 +17,23 @@ export default function PrepPromptPage() {
             <div className="max-w-6xl mx-auto px-6 pt-40">
                 {/* Header */}
                 <div className="text-center mb-16 space-y-6">
-                    <motion.h1
-                        initial={{ opacity: 0, y: -20 }}
+                    <motion.div
+                        initial={{ opacity: 0, y: -16 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-4xl sm:text-5xl font-black text-trust-navy tracking-tight drop-shadow-sm flex items-center justify-center gap-4"
+                        className="flex justify-center"
                     >
-                        <div className="bg-trust-navy rounded-full p-3 flex items-center justify-center shadow-lg">
-                            <Compass className="w-10 h-10 text-white" />
+                        <div className="inline-flex items-center gap-3 mb-6 text-left">
+                            <div className="w-14 h-14 rounded-2xl bg-purple-600 flex items-center justify-center shadow-lg shadow-purple-200 shrink-0">
+                                <Compass className="w-7 h-7 text-white" />
+                            </div>
+                            <h1 className="text-3xl font-black text-slate-900 break-keep">5D-Say:오디세이</h1>
                         </div>
-                        <span><span className="text-purple-500">5D-Say</span> 오디세이</span>
-                    </motion.h1>
+                    </motion.div>
                     <motion.p
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
-                        className="text-xl text-slate-600 mt-8 md:mt-10 max-w-3xl mx-auto break-keep leading-relaxed bg-white p-6 rounded-2xl border border-slate-200 shadow-xl"
+                        className="text-base text-slate-600 mt-6 max-w-3xl mx-auto break-keep leading-relaxed bg-white p-5 rounded-2xl border border-slate-200 shadow-lg"
                     >
                         <span className="text-purple-500 font-bold">5D-Say(오디세이)</span>는 <br />입학사정관이 당신에게 던지는 5가지 핵심 질문의 키워드입니다.<br className="hidden sm:block" />
                         [<span className="text-purple-500 font-bold">Dream,  trenD, Difficulty, branD, Different]</span>

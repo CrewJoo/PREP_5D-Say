@@ -100,21 +100,23 @@ export default function TransformPage() {
                 <div className="max-w-6xl mx-auto px-6 pt-52">
                     {/* Header */}
                     <div className="text-center mb-24 space-y-6">
-                        <motion.h1
-                            initial={{ opacity: 0, y: -20 }}
+                        <motion.div
+                            initial={{ opacity: 0, y: -16 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight drop-shadow-sm flex items-center justify-center gap-4"
+                            className="inline-flex items-center gap-3 mb-6"
                         >
-                            <div className="bg-trust-navy rounded-full p-3 flex items-center justify-center shadow-lg">
-                                <ArrowRightLeft className="w-10 h-10 text-white" />
+                            <div className="w-14 h-14 rounded-2xl bg-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-200 shrink-0">
+                                <ArrowRightLeft className="w-7 h-7 text-white" />
                             </div>
-                            <span><span className="text-emerald-600">PREP</span> 변환기</span>
-                        </motion.h1>
+                            <div className="text-left">
+                                <h1 className="text-3xl font-black text-slate-900 break-keep">PREP 변환기</h1>
+                            </div>
+                        </motion.div>
                         <motion.p
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1 }}
-                            className="text-xl text-slate-600 mt-8 md:mt-10 max-w-3xl mx-auto break-keep leading-relaxed bg-white p-6 rounded-2xl border border-slate-200 shadow-xl"
+                            className="text-base text-slate-600 mt-6 max-w-3xl mx-auto break-keep leading-relaxed bg-white p-5 rounded-2xl border border-slate-200 shadow-lg"
                         >
                             <span className="text-emerald-600 font-bold">PREP 변환기</span>는 <br />당신의 파편화된 생각을 <br />논리적인 <span className="text-emerald-600 font-bold">PREP 구조</span>로 자동 재조립해줍니다.<br className="hidden sm:block" />
                             <br />복잡한 설명이나 장황한 아이디어를 입력하면, <br />AI가 핵심(Point)을 추출하고 <br />근거(Reason)와 사례(Example)를 보강하여 <br />설득력 있는 답변으로 완성합니다.
@@ -164,12 +166,14 @@ export default function TransformPage() {
             title=""
             description=""
             pageTitle={
-                <span className="flex items-center justify-center gap-4">
-                    <span className="bg-trust-navy rounded-full p-3 flex items-center justify-center shadow-lg">
-                        <ArrowRightLeft className="w-10 h-10 text-white" />
-                    </span>
-                    <span><span className="text-emerald-600">PREP</span> 변환기</span>
-                </span>
+                <>
+                    <div className="w-14 h-14 rounded-2xl bg-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-200 shrink-0">
+                        <ArrowRightLeft className="w-7 h-7 text-white" />
+                    </div>
+                    <div className="text-left">
+                        <h1 className="text-3xl font-black text-slate-900 break-keep">PREP 변환기</h1>
+                    </div>
+                </>
             }
             pageDescription={
                 <>
@@ -258,19 +262,19 @@ export default function TransformPage() {
                                 <div className="space-y-4">
                                     <div className="rounded-xl bg-blue-50 p-5 shadow-sm border border-blue-100">
                                         <span className="font-bold text-trust-navy text-lg block mb-2">Point (결론)</span>
-                                        <p className="text-xl text-gray-900 leading-relaxed">{parsedData.point1}</p>
+                                        <p className="text-base text-gray-900 leading-relaxed">{parsedData.point1}</p>
                                     </div>
                                     <div className="rounded-xl bg-gray-50 p-5 shadow-sm border border-gray-100">
                                         <span className="font-bold text-gray-700 text-lg block mb-2">Reason (이유)</span>
-                                        <p className="text-xl text-gray-900 leading-relaxed">{parsedData.reason}</p>
+                                        <p className="text-base text-gray-900 leading-relaxed">{parsedData.reason}</p>
                                     </div>
                                     <div className="rounded-xl bg-gray-50 p-5 shadow-sm border border-gray-100">
                                         <span className="font-bold text-gray-700 text-lg block mb-2">Example (사례)</span>
-                                        <p className="text-xl text-gray-900 leading-relaxed">{parsedData.example}</p>
+                                        <p className="text-base text-gray-900 leading-relaxed">{parsedData.example}</p>
                                     </div>
                                     <div className="rounded-xl bg-blue-50 p-5 shadow-sm border border-blue-100">
                                         <span className="font-bold text-trust-navy text-lg block mb-2">Point (요약)</span>
-                                        <p className="text-xl text-gray-900 leading-relaxed">{parsedData.point2}</p>
+                                        <p className="text-base text-gray-900 leading-relaxed">{parsedData.point2}</p>
                                     </div>
                                 </div>
 

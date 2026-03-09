@@ -61,8 +61,12 @@ export default function PrepStandPage() {
             description={stepInfo.description}
             pageTitle={
                 <>
-                    <span className="text-rose-500">PREP</span>실전{" "}
-                    <span className="text-slate-500 font-medium text-3xl sm:text-4xl">(Stand)</span>
+                    <div className="w-14 h-14 rounded-2xl bg-rose-500 flex items-center justify-center shadow-lg shadow-rose-200 shrink-0">
+                        <span className="text-2xl font-black text-white">5D</span>
+                    </div>
+                    <div className="text-left">
+                        <h1 className="text-3xl font-black text-slate-900 break-keep">자기발견 5D 문답법</h1>
+                    </div>
                 </>
             }
             pageDescription={

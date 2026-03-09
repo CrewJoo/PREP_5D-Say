@@ -17,16 +17,13 @@ export default function AboutPrepPage() {
             >
                 {/* Header */}
                 <div className="text-center mb-24 space-y-6">
-                    {/* <span className="inline-block px-4 py-2 rounded-full bg-blue-100 text-blue-700 font-bold text-sm mb-4">
-                        Logical Framework
-                    </span> */}
-                    <h1 className="text-4xl sm:text-5xl font-black tracking-tight text-trust-navy drop-shadow-sm flex items-center justify-center gap-4">
-                        <div className="bg-trust-navy rounded-full p-3 flex items-center justify-center shadow-lg">
-                            <BookOpen className="w-10 h-10 text-white" />
+                    <div className="inline-flex items-center gap-3 mb-6 text-left">
+                        <div className="w-14 h-14 rounded-2xl bg-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-200 shrink-0">
+                            <BookOpen className="w-7 h-7 text-white" />
                         </div>
-                        <span><span className="text-emerald-600">PREP</span>이란?</span>
-                    </h1>
-                    <p className="text-xl text-slate-600 mt-8 md:mt-10 max-w-3xl mx-auto break-keep leading-relaxed bg-white p-6 rounded-2xl border border-slate-200 shadow-xl">
+                        <h1 className="text-3xl font-black text-slate-900 break-keep">PREP이란?</h1>
+                    </div>
+                    <p className="text-base text-slate-600 mt-6 max-w-3xl mx-auto break-keep leading-relaxed bg-white p-5 rounded-2xl border border-slate-200 shadow-lg">
                         <span className="text-emerald-600 font-bold">PREP</span>(프렙)은 단순한 말하기 기법이 아닌, <br className="hidden sm:block" />복잡한 머릿속을 가장 명료하게 정렬하는 강력한<span className="text-emerald-600 font-bold">'생각의 공식'</span>입니다.<br className="hidden sm:block" />
                         <span className="text-emerald-600 font-bold">Point-Reason-Example-Point</span>로 이어지는 4단계 완벽한 논리 구조를 통해, <br className="hidden sm:block" />당신의 직관을 확신으로 바꾸고 상대를 매혹하는 커뮤니케이션의 정수를 경험하세요.
                     </p>
@@ -76,7 +73,7 @@ export default function AboutPrepPage() {
                             className="bg-white rounded-3xl p-8 shadow-xl shadow-slate-200/50 border border-slate-100 flex flex-col items-center text-center relative overflow-hidden group hover:-translate-y-2 transition-transform duration-300 h-full"
                         >
                             <div className={`absolute top-0 left-0 w-full h-3 ${step.bar}`} />
-                            <span className={`flex h-20 w-20 items-center justify-center rounded-2xl text-3xl font-black mb-6 shadow-md ${step.color}`}>
+                            <span className={`flex h-20 w-20 items-center justify-center rounded-full text-3xl font-black mb-6 shadow-md ${step.color}`}>
                                 {step.step}
                             </span>
                             <h3 className="text-2xl font-bold text-gray-900 mb-2">{step.name}</h3>

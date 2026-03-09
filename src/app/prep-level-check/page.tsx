@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { BarChart3 } from "lucide-react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import {
     useHistoryStore,
     LEVEL_EMOJI,
@@ -33,6 +34,9 @@ import { SkillDashboard, ThemeColor } from "@/components/prep/skill-dashboard";
 import { GrowthLevel } from "@/lib/history-store";
 import { ThreeLeavesIcon } from "@/components/icons/three-leaves-icon";
 
+const ProgramGuideModal = dynamic(() => import("@/components/common/program-guide-modal").then(mod => mod.ProgramGuideModal), { ssr: false });
+const CoachingModal = dynamic(() => import("@/components/common/coaching-modal").then(mod => mod.CoachingModal), { ssr: false });
+
 // ──────────────────────────────────────────────
 // Type label & color helpers
 // ──────────────────────────────────────────────
@@ -60,6 +64,8 @@ const TYPE_CONFIG: Pick<Record<PracticeType, { label: string; color: string; ico
 export default function MyProgressPage() {
     // Hydration guard for SSR
     const [mounted, setMounted] = useState(false);
+    const [showGuide, setShowGuide] = useState(false);
+    const [showCoaching, setShowCoaching] = useState(false);
     useEffect(() => setMounted(true), []);
 
     const store = useHistoryStore();
@@ -169,15 +175,33 @@ export default function MyProgressPage() {
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="text-center mb-12"
+                    className="mb-12"
                 >
-                    <h1 className="text-4xl sm:text-5xl font-black text-trust-navy tracking-tight flex items-center justify-center gap-4">
-                        <div className="bg-trust-navy rounded-full p-3 flex items-center justify-center shadow-lg">
-                            <BarChart3 className="w-10 h-10 text-white" />
+                    {/* 헤더 영역: 제목(왼쪽) + 워크숍/코칭 버튼(오른쪽) */}
+                    <div className="flex items-center justify-between gap-4">
+                        <div className="inline-flex items-center gap-3 text-left">
+                            <div className="w-14 h-14 rounded-2xl bg-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-200 shrink-0">
+                                <BarChart3 className="w-7 h-7 text-white" />
+                            </div>
+                            <h1 className="text-3xl font-black text-slate-900 break-keep">PREP 레벨체크</h1>
                         </div>
-                        <span><span className="text-emerald-600">PREP</span> 레벨체크</span>
-                    </h1>
-                    <p className="text-lg font-bold text-slate-500 mt-4 bg-white px-6 py-2 rounded-full inline-block shadow-sm border border-slate-100">
+                        {/* 워크숍 / 1:1 코칭 버튼 */}
+                        <div className="flex items-center gap-2 shrink-0">
+                            <button
+                                onClick={() => setShowGuide(true)}
+                                className="px-3 py-1.5 rounded-full text-sm font-bold whitespace-nowrap transition-all border-2 border-amber-400 bg-white text-amber-600 hover:bg-amber-50 hover:border-amber-500 active:scale-95 shadow-sm"
+                            >
+                                워크숍
+                            </button>
+                            <button
+                                onClick={() => setShowCoaching(true)}
+                                className="px-3 py-1.5 rounded-full text-sm font-bold whitespace-nowrap transition-all border-2 border-amber-400 text-amber-600 bg-white hover:bg-amber-50 hover:border-amber-500 active:scale-95 shadow-sm"
+                            >
+                                1:1 코칭
+                            </button>
+                        </div>
+                    </div>
+                    <p className="text-base font-bold text-slate-500 mt-3 bg-white px-5 py-2 rounded-full inline-block shadow-sm border border-slate-100">
                         당신의 논리 레벨을 확인해보세요! 🌱
                     </p>
                 </motion.div>
@@ -410,6 +434,9 @@ export default function MyProgressPage() {
                     iconNode={getDynamicIcon(selectedRecord.type, "w-8 h-8")}
                 />
             )}
+
+            <ProgramGuideModal isOpen={showGuide} onClose={() => setShowGuide(false)} />
+            <CoachingModal isOpen={showCoaching} onClose={() => setShowCoaching(false)} />
         </div>
     );
 }

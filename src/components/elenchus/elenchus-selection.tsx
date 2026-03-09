@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 import { ElenchusCategory, useElenchusStore } from "@/lib/elenchus-store";
 
 const CATEGORIES: { key: ElenchusCategory; label: string; desc: string; icon: string }[] = [
-    { key: 'DREAM', label: 'Dream (꿈/목표)', desc: '당신의 가슴을 뛰게 하는 비전은 무엇인가요?', icon: '🌟' },
-    { key: 'DIFFICULTY', label: 'Difficulty (고난)', desc: '어떤 시련이 당신을 성장시켰나요?', icon: '🧗' },
-    { key: 'TREND', label: 'Trend (통찰)', desc: '세상의 변화 속에서 무엇을 보았나요?', icon: '📈' },
-    { key: 'STAND', label: 'Stand (가치관)', desc: '절대 타협할 수 없는 당신만의 신념은?', icon: '🚩' },
-    { key: 'DIFFERENT', label: 'Different (차별성)', desc: '남들과 다른 당신만의 한 끗은 무엇인가요?', icon: '💎' },
+    { key: 'DREAM', label: 'Dream (꿈/목표)', desc: '내가 이 전공·학교를 선택한 이유는 무엇인가요?', icon: '🌟' },
+    { key: 'DIFFICULTY', label: 'Difficulty (고난)', desc: '가장 힘들었던 순간, 어떻게 극복했나요?', icon: '🧗' },
+    { key: 'TREND', label: 'trenD (시대 통찰)', desc: '세상의 변화 속에서 내가 발견한 기회는?', icon: '📈' },
+    { key: 'STAND', label: 'branD (나만의 브랜드)', desc: '나를 한 줄로 표현한다면? 나만의 강점은?', icon: '🚩' },
+    { key: 'DIFFERENT', label: 'Different (차별성)', desc: '다른 지원자들과 나를 구별하는 결정적 한 끗은?', icon: '💎' },
 ];
 
 export function ElenchusSelection() {
